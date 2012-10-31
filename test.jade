@@ -1,0 +1,19 @@
+!!! 5
+html
+	head
+		title Test Jade File
+		style
+			body {
+				background: #ddd;
+				color: #222;
+				padding: 2em;
+				font-family: sans-serif;
+			}
+	body
+		h1 Futura IO
+		- each user in users
+			h2 #{user.name}
+			p #{user.title}
+			- if(user.twitter)
+				a(href='http://twitter.com/#{user.twitter}') #{user.twitter}
+		script(src='/test.js')

@@ -1,0 +1,17 @@
+{
+	"name":"quickyJade",
+	"description":"Rapid prototyping of Jade templates",
+	"version": "0.0.1",
+	"author":{
+		"name": "TJ Krusinski",
+		"email": "tj@futura.io"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/futuraio/quickyjade"
+	},
+	"dependencies":{
+		"jade": "latest"
+	},
+	"main": "./index.js"
+}
