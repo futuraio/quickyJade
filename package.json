@@ -6,6 +6,10 @@
 		"name": "TJ Krusinski",
 		"email": "tj@futura.io"
 	},
+	"keywords": [
+		"jade",
+		"express",
+	],
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/futuraio/quickyjade"

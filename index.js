@@ -1,6 +1,7 @@
 var http = require('http'),
 	fs = require('fs'),
 	url = require('url'),
+	path = require('path'),
 	events = require('events'),
 	jade = require('jade'),
 	server;
@@ -82,6 +83,29 @@ var sendWithJSON = function(res, file, JSONpath){
 };
 
 /**
+*	Send the template with a JS file
+*	@param res | response object
+*	@param file | jade file
+*	@param JSpath | path to js file to use
+*/
+var sendWithJS = function(res, file, JSpath){
+	var js, file;
+	try {
+		js = require('./'+JSpath);
+	} catch(e){
+		abort(res, 500, 'Trouble getting the JS file');
+		return false;
+	};
+
+	file = renderFile(file, js);
+	res.setHeader('Content-Type', 'text/html');
+	res.setHeader('Content-Length', file.length);
+	res.write(file);
+	res.end();
+	process.removeAllListeners('uncaughtException');
+};
+
+/**
 *	serverHandler
 *	@param req | request object
 *	@param res | response object
@@ -142,7 +166,13 @@ var serverHandler = function(req, res){
 	*	Render that thing
 	*/
 	eventer.on('fileIsJade', function(file){
-		query && query.json ? sendWithJSON(res, file, query.json) : sendWithoutJSON(res, file);
+		if(query && query.json){
+			sendWithJSON(res, file, query.json);
+		} if(query && query.js){
+			sendWithJS(res, file, query.js);
+		} else {
+			sendWithoutJSON(res, file);
+		};
 	});
 };
 
