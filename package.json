@@ -1,7 +1,7 @@
 {
-	"name":"quickyJade",
+	"name":"quickyjade",
 	"description":"Rapid prototyping of Jade templates",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"author":{
 		"name": "TJ Krusinski",
 		"email": "tj@futura.io"
@@ -13,5 +13,8 @@
 	"dependencies":{
 		"jade": "latest"
 	},
-	"main": "./index.js"
+	"main": "./index.js",
+	"bin": {
+		"quickyjade": "bin/quickyjade"
+	}
 }
