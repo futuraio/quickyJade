@@ -1,7 +1,7 @@
 {
 	"name":"quickyjade",
 	"description":"Rapid prototyping of Jade templates",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"author":{
 		"name": "TJ Krusinski",
 		"email": "tj@futura.io"
