@@ -15,7 +15,8 @@
 		"url": "git://github.com/futuraio/quickyjade"
 	},
 	"dependencies":{
-		"jade": "latest"
+		"jade": "latest",
+		"mime": "latest"
 	},
 	"main": "./index.js",
 	"bin": {

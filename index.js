@@ -4,6 +4,7 @@ var http = require('http'),
 	path = require('path'),
 	events = require('events'),
 	jade = require('jade'),
+	mime = require('mime'),
 	server;
 
 /**
@@ -116,6 +117,9 @@ var serverHandler = function(req, res){
 		query = {},
 		path = urlInfo.pathname.slice(1, urlInfo.pathname.length),
 		eventer = new events.EventEmitter();
+		
+	// if you liked it then you should have put a mime on it
+	res.mime = mime.lookup(path);
 
 	/**
 	*	Parse the query string if there is one
@@ -149,7 +153,9 @@ var serverHandler = function(req, res){
 	*	Gotta serve them static files also
 	*/
 	eventer.on('checkJade', function(file){
-		urlInfo.pathname.match('.jade') ? eventer.emit('fileIsJade', file) : eventer.emit('fileIsNotJade', file);
+		res.mime === 'application/octet-stream' && urlInfo.pathname.match('.jade') ? 
+			eventer.emit('fileIsJade', file) :
+			eventer.emit('fileIsNotJade', file);
 	});
 	
 	/**
@@ -158,6 +164,7 @@ var serverHandler = function(req, res){
 	eventer.on('fileIsNotJade', function(file){
 		res.statusCode = 200;
 		res.setHeader('Content-Length', file.length);
+		res.setheader('Content-Type', res.mime);
 		res.end(file);
 		process.removeAllListeners('uncaughtException');
 	});
