@@ -164,7 +164,7 @@ var serverHandler = function(req, res){
 	eventer.on('fileIsNotJade', function(file){
 		res.statusCode = 200;
 		res.setHeader('Content-Length', file.length);
-		res.setheader('Content-Type', res.mime);
+		res.setHeader('Content-Type', res.mime);
 		res.end(file);
 		process.removeAllListeners('uncaughtException');
 	});
