@@ -1,3 +1,7 @@
+# This project is deprecated
+
+We're keeping it here for lols when looking at the source. If you want to use this, checkout [jade-server](https://github.com/ded/jade-server)
+
 # QuickyJade
 
 ### Rapid prototyping of Jade templates
